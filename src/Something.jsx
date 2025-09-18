@@ -1,6 +1,8 @@
 const Something = ()=>{
     return <>
-    <h1>this is the first thing</h1>
+    <h1>Findo Trip Dashboard</h1>
+    <p>This just another small increment</p>
+    
     </>
 }
 
