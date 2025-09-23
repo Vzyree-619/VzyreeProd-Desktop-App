@@ -15,31 +15,73 @@ const createWindow = () => {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+    
+   
+    
     },
+
+   
   });
 
-const MainMenu = Menu.buildFromTemplate([
+
+    const menu = Menu.buildFromTemplate(menuTemplate);
+    Menu.setApplicationMenu(menu);
+
+
+const menuTemplate = [
   {
-    label: 'File',
+    label: "File",
     submenu: [
-      { role: 'quit' }
+      {
+        label: "Open",
+        click: () => {
+          console.log("Open clicked");
+        }
+      },
+      {
+        label: "Exit",
+        click: () => {
+          app.quit();
+        }
+      }
     ]
   },
   {
-    label: 'Edit',
+    label: "Edit",
     submenu: [
-      { role: 'undo' },
-      { role: 'redo' },
-      { type: 'separator' },
-      { role: 'cut' },
-      { role: 'copy' },
-      { role: 'paste' },
-      { role: 'delete' },
-      { role: 'selectAll' }
+      { role: "undo" },
+      { role: "redo" },
+      { type: "separator" },
+      { role: "cut" },
+      { role: "copy" },
+      { role: "paste" }
     ]
   },
-]
-)
+  {
+    label: "View",
+    submenu: [
+      { role: "reload" },
+      { role: "toggledevtools" },
+      { type: "separator" },
+      { role: "resetzoom" },
+      { role: "zoomin" },
+      { role: "zoomout" },
+      { role: "togglefullscreen" }
+    ]
+  },
+  {
+    label: "Help",
+    submenu: [
+      {
+        label: "Learn More",
+        click: async () => {
+          const { shell } = require("electron");
+          await shell.openExternal("https://www.electronjs.org");
+        }
+      }
+    ]
+  }
+];
 
  
 
